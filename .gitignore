@@ -1,1 +1,7 @@
 .venv
+.mypi_cache
+.ropeproject
+__pycache__
+.env
+db.sqbpro
+db.sqlite3
