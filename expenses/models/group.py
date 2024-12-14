@@ -2,10 +2,13 @@ from django.db import models
 from django.conf import settings
 
 class Group(models.Model):
+    COUPLE = "Couple"
+    FAMILY = "Family"
+    FRIENDS = "Friends"
     GROUP_CHOICES = [
-        ("COUPLE", 'Couple'),
-        ("FAMILY", 'Family'),
-        ("FRIENDS", 'Friends'),
+        (COUPLE, COUPLE),
+        (FAMILY, COUPLE),
+        (FRIENDS, COUPLE),
     ]
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

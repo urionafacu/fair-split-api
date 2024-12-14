@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rules.contrib.models import RulesModelBase, RulesModelMixin
-from rules import is_staff, is_authenticated
+from rules import is_staff, is_authenticated, always_allow
 from accounts.rules import is_owner
 
 from accounts.managers import CustomUserManager
@@ -25,7 +25,7 @@ class User(RulesModelMixin, AbstractBaseUser, PermissionsMixin, metaclass=RulesM
         verbose_name = _("user")
         verbose_name_plural = _("users")
         rules_permissions = {
-            "add": is_staff,
+            "add": always_allow,
             "view": is_authenticated,
             "change": is_owner | is_staff,
             "delete": is_staff,
