@@ -164,7 +164,6 @@ SIMPLE_JWT = {
     "ALGORITHM": "HS256",
     "SIGNING_KEY": os.getenv("JWT_SIGNING_KEY"),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
-    'TOKEN_OBTAIN_SERIALIZER': 'accounts.serializers.CustomTokenObtainPairSerializer',
 }
 
 
