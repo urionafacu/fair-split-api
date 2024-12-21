@@ -1,6 +1,5 @@
 from django.db import models
-from rules import is_staff, is_authenticated
-from accounts.rules import is_owner
+from rules import is_authenticated
 from rules.contrib.models import RulesModelBase, RulesModelMixin
 from django.utils.translation import gettext_lazy as _
 
@@ -16,8 +15,8 @@ class Expense(RulesModelMixin, models.Model, metaclass=RulesModelBase):
         verbose_name = _("expense")
         verbose_name_plural = _("expenses")
         rules_permissions = {
-            "add": is_staff,
+            "add": is_authenticated,
             "view": is_authenticated,
-            "change": is_owner | is_staff,
-            "delete": is_staff,
+            "change": is_authenticated,
+            "delete": is_authenticated,
         }
