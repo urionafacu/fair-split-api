@@ -1,5 +1,6 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
+
 
 class Group(models.Model):
     COUPLE = "Couple"
@@ -34,17 +35,23 @@ class GroupMember(models.Model):
     ]
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    income = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    income = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
     income_currency = models.CharField(max_length=3, default="ARS")
-    income_frequency = models.CharField(max_length=20, choices=INCOME_FREQUENCY_CHOICES, default=MONTHLY)
+    income_frequency = models.CharField(
+        max_length=20, choices=INCOME_FREQUENCY_CHOICES, default=MONTHLY
+    )
     share_percentage = models.DecimalField(
         max_digits=5,
         decimal_places=2,
         null=True,
         blank=True,
-        help_text="Custom percentage for expense splitting"
+        help_text="Custom percentage for expense splitting",
     )
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="members")
+    group = models.ForeignKey(
+        Group, on_delete=models.CASCADE, related_name="members"
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     joined_at = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=50, choices=ROLE_CHOICES)

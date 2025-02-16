@@ -3,5 +3,7 @@
 .ropeproject
 __pycache__
 .env
+.env.prod
 db.sqbpro
 db.sqlite3
+.zed
