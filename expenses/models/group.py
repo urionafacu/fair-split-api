@@ -37,6 +37,13 @@ class GroupMember(models.Model):
     income = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     income_currency = models.CharField(max_length=3, default="ARS")
     income_frequency = models.CharField(max_length=20, choices=INCOME_FREQUENCY_CHOICES, default=MONTHLY)
+    share_percentage = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        help_text="Custom percentage for expense splitting"
+    )
     group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="members")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     joined_at = models.DateTimeField(auto_now_add=True)
