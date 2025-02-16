@@ -25,7 +25,7 @@ class GroupMemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupMember
-        fields = ['id', 'user', 'role', 'joined_at']
+        fields = ['id', 'user', 'role', 'joined_at', 'income', 'income_currency', 'income_frequency', 'share_percentage']
 
 class GroupSerializer(serializers.ModelSerializer):
     members = GroupMemberSerializer(many=True)
