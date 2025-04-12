@@ -1,6 +1,6 @@
 from .base import *  # noqa: F403
 
-DEBUG = False
+DEBUG = True
 
 # Configuraciones de seguridad para producción
 SESSION_COOKIE_SECURE = True
