@@ -1,7 +1,5 @@
 from .base import *  # noqa: F403
 
-DEBUG = False
-
 # Configuraciones de seguridad para producción
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
