@@ -3,7 +3,6 @@ from .base import *  # noqa: F403
 DEBUG = False
 
 # Configuraciones de seguridad para producción
-SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
