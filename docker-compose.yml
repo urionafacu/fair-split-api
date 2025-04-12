@@ -1,5 +1,8 @@
 services:
   api:
+    environment:
+      - DJANGO_ENV=local
+      - DJANGO_SETTINGS_MODULE=core.settings.test
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -24,6 +27,19 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - DJANGO_ENV=test
+      - DJANGO_SETTINGS_MODULE=core.settings.test
+    command: pytest
+    volumes:
+      - .:/app
+    depends_on:
+      - db
 
   # redis:
   #   image: redis:7-alpine

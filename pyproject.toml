@@ -1,6 +1,6 @@
 [tool.ruff]
 # Reglas a activar
-select = [
+lint.select = [
   "E", # pycodestyle
   "F", # pyflakes
   "I", # isort
