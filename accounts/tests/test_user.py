@@ -25,3 +25,20 @@ def test_login(client):
     data = response.json()
     assert "access" in data
     assert "refresh" in data
+
+
+@pytest.mark.django_db
+def test_register_user(client):
+    payload = {
+        "email": "nuevo@ejemplo.com",
+        "password": "clave_segura123",
+        "first_name": "Nuevo",
+        "last_name": "Usuario",
+    }
+    response = client.post(reverse("users-list"), data=payload)
+    assert response.status_code == status.HTTP_201_CREATED
+    data = response.json()
+    assert data["email"] == payload["email"]
+    assert data["first_name"] == payload["first_name"]
+    assert data["last_name"] == payload["last_name"]
+    assert "password" not in data

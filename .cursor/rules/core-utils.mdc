@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Core Utils Guide
+
+The [core/utils/](mdc:core/utils) directory contains shared utility code for the project:
+
+- [mixins.py](mdc:core/utils/mixins.py): Provides the ReadWriteSerializerMixin, which allows viewsets to use different serializers for read and write operations based on the request method or action.
+
+This directory is intended for reusable logic that can be shared across multiple apps.
