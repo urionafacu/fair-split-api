@@ -2,7 +2,7 @@ services:
   api:
     environment:
       - DJANGO_ENV=local
-      - DJANGO_SETTINGS_MODULE=core.settings.test
+      - DJANGO_SETTINGS_MODULE=core.settings.local
     build:
       context: .
       dockerfile: Dockerfile.dev
