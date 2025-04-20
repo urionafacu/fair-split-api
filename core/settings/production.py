@@ -11,8 +11,8 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Define explicit allowed hosts for production
 ALLOWED_HOSTS = [
-    "https://localhost:3000",
-    "https://fair-split-api-production.up.railway.app/",
+    "localhost",
+    "fair-split-api-production.up.railway.app",
 ]
 
 # CSRF trusted origins (add your production domains)
