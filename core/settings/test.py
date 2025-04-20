@@ -1,24 +1,18 @@
+import os
+
 from .base import *  # noqa: F403
 
 DEBUG = True
 
-# Test-specific settings
-# Example: Use an in-memory database for tests
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': ':memory:',
-#     }
-# }
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "test_fairsplit",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",
-        "PORT": "5432",
+        "NAME": os.environ.get("POSTGRES_DB", "fairsplit"),
+        "USER": os.environ.get("POSTGRES_USER", "postgres"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
         "TEST": {
             "NAME": "test_fairsplit",
             "SERIALIZE": False,
