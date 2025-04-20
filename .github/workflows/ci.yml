@@ -18,18 +18,15 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-
-      - name: Install Ruff
-        run: pip install ruff
-
       - name: Run Ruff auto-fix and format
-        run: |
-          ruff check --fix .
-          ruff format .
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'check --fix .'
+
+      - name: Run Ruff format
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'format .'
 
       - name: Commit and push changes if needed
         run: |
@@ -42,7 +39,9 @@ jobs:
           fi
 
       - name: Fail if there are still lint errors
-        run: ruff check .
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'check .'
 
   test:
     runs-on: ubuntu-latest
@@ -65,10 +64,18 @@ jobs:
       POSTGRES_DB: fairsplit
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      # Agrega aquí otras variables necesarias
+      SECRET_KEY: "ci-test-secret-key"
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Set up Python
         uses: actions/setup-python@v5
