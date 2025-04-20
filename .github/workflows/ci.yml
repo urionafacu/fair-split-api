@@ -65,6 +65,7 @@ jobs:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       SECRET_KEY: "ci-test-secret-key"
+      DEBUG: "True"
 
     steps:
       - uses: actions/checkout@v4

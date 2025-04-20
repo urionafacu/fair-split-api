@@ -148,7 +148,6 @@ def test_register_user(client):
         "partner_income": "80000.00",
     }
     response = client.post(reverse("users-list"), data=payload)
-    print("users-list", reverse("users-list"))
     assert response.status_code == status.HTTP_201_CREATED
     data = response.json()
     assert data["email"] == payload["email"]
