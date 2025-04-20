@@ -66,6 +66,7 @@ jobs:
       POSTGRES_PASSWORD: postgres
       SECRET_KEY: "ci-test-secret-key"
       DEBUG: "True"
+      JWT_SIGNING_KEY: "ci-test-signing-key"
 
     steps:
       - uses: actions/checkout@v4
