@@ -1,7 +1,7 @@
 from .base import *  # noqa: F403
 
 # Security settings for production
-DEBUG = False
+DEBUG = True
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
