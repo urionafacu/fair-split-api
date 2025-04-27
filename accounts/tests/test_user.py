@@ -1,5 +1,3 @@
-import secrets
-
 import pytest
 from django.urls import reverse
 from rest_framework import status
@@ -10,11 +8,9 @@ from accounts.factories import UserFactory
 @pytest.mark.django_db
 def test_login(client):
     user = UserFactory()
-    token = secrets.token_hex(4)
     payload = {
         "email": user.email,
         "password": "secretpassword",
-        "push_token": token,
     }
     response = client.post(
         reverse("token_obtain_pair"),
@@ -29,11 +25,9 @@ def test_login(client):
 
 @pytest.mark.django_db
 def test_login_wrong_email(client):
-    token = secrets.token_hex(4)
     payload = {
         "email": "noexiste@ejemplo.com",
         "password": "secretpassword",
-        "push_token": token,
     }
     response = client.post(reverse("token_obtain_pair"), data=payload)
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
@@ -44,11 +38,9 @@ def test_login_wrong_email(client):
 @pytest.mark.django_db
 def test_login_wrong_password(client):
     user = UserFactory()
-    token = secrets.token_hex(4)
     payload = {
         "email": user.email,
         "password": "incorrecta",
-        "push_token": token,
     }
     response = client.post(reverse("token_obtain_pair"), data=payload)
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
@@ -76,10 +68,7 @@ def test_login_invalid_email_format(client):
         "password": "secretpassword",
     }
     response = client.post(reverse("token_obtain_pair"), data=payload)
-    assert response.status_code in (
-        status.HTTP_400_BAD_REQUEST,
-        status.HTTP_401_UNAUTHORIZED,
-    )
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
 @pytest.mark.django_db
